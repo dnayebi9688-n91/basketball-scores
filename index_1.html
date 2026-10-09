@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="نتایج زنده بسکتبال NBA، WNBA و NCAA، برنامه بازی‌ها و مرجع لیگ‌های بسکتبال جهان به فارسی.">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="بسکتبال‌نت | نتایج زنده بسکتبال"><meta property="og:type" content="website"><meta property="og:locale" content="fa_IR">
+<link rel="canonical" href="https://dnayebi9688-n91.github.io/basketball-scores/">
+<title>بسکتبال‌نت | نتایج زنده</title>
+<style>
+:root{--bg:#f6f4f0;--card:#fff;--tx:#1b1b1f;--mu:#6b6b76;--ac:#e8590c;--bd:#e4e0d8}
+@media(prefers-color-scheme:dark){:root{--bg:#141417;--card:#1f1f24;--tx:#f1f1f3;--mu:#9a9aa5;--ac:#ff8a3d;--bd:#33333b}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font-family:Vazirmatn,Tahoma,sans-serif;line-height:1.6}
+header{background:linear-gradient(135deg,#e8590c,#9c2f00);color:#fff;padding:20px 16px}
+.w{max-width:960px;margin:auto}h1{margin:0;font-size:25px}header p{margin:4px 0 0;font-size:13px;opacity:.9}
+nav{display:flex;gap:6px;padding:10px 16px;overflow-x:auto;position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--bd)}
+nav button{border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:7px 15px;border-radius:20px;font:inherit;cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{padding:16px}.hid{display:none}
+input{width:100%;padding:10px 14px;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;margin-bottom:12px}
+.day{margin:16px 0 8px;font-weight:700;color:var(--ac)}
+.g{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;margin-bottom:8px}
+.t{font-weight:600}.t small{display:block;color:var(--mu);font-weight:400;font-size:12px}
+.s{font-size:20px;font-weight:700;direction:ltr}.m{text-align:center;font-size:12px;color:var(--mu);min-width:96px}
+.live{color:#e03131;font-weight:700}.lg{font-size:11px;color:var(--mu)}
+.ls{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.l{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;text-decoration:none;color:inherit}
+.l:hover{border-color:var(--ac)}.l span{display:block;font-size:13px;color:var(--mu)}
+.note{background:var(--card);border:1px dashed var(--bd);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--mu);margin-bottom:12px}.l{display:flex;flex-direction:column;gap:3px}.bd{align-self:flex-start;font-size:12px;padding:1px 10px;border-radius:12px;color:#fff!important}.bd.live{background:#2f9e44}.bd.soon{background:#e8590c}.bd.done{background:#868e96}.ap{font-size:11px;color:var(--mu)}
+footer{text-align:center;font-size:12px;color:var(--mu);padding:20px}
+</style></head><body>
+<header><div class="w"><h1>🏀 بسکتبال‌نت</h1><p id="up">در حال بارگذاری…</p></div></header>
+<nav class="w" id="nav"></nav>
+<main class="w"><section id="games"><input id="q" type="search" placeholder="جستجوی تیم…"><div id="list"></div></section>
+<section id="leagues" class="hid"><div class="note">وضعیت هر لیگ بر اساس تاریخ امروز خودکار محاسبه می‌شود. تاریخ‌های «تقریبی» را در سایت رسمی لیگ تأیید کنید.</div><input id="lq" type="search" placeholder="جستجوی لیگ یا کشور…"><div class="ls" id="ll"></div></section></main>
+<footer>داده‌ها هر ۱۰ دقیقه توسط بات به‌روز می‌شوند.</footer>
+<script>
+const L=[
+["لیگ برتر بسکتبال ایران (مردان)","ایران","https://www.iranbasketball.com","2026-10-22","2027-04-15",1],
+["لیگ برتر بسکتبال ایران (بانوان)","ایران","https://www.iranbasketball.com","2026-10-30","2027-04-15",1],
+["NBA","آمریکا / کانادا","https://www.nba.com","2026-10-20","2027-06-20",1],
+["WNBA","آمریکا","https://www.wnba.com",null,"2026-11-01",2],
+["NCAA مردان","آمریکا","https://www.ncaa.com/sports/basketball-men/d1","2026-11-02","2027-04-06",0],
+["EuroLeague","اروپا","https://www.euroleaguebasketball.net","2026-09-24","2027-05-31",1],
+["EuroCup","اروپا","https://www.eurocupbasketball.com","2026-09-29","2027-04-30",1],
+["EuroLeague Women","اروپا","https://www.fiba.basketball","2026-10-14","2027-04-30",1],
+["Liga ACB","اسپانیا","https://www.acb.com","2026-09-26","2027-06-20",0],
+["BBL","آلمان","https://www.easycredit-bbl.de","2026-09-25","2027-06-20",0],
+["Lega Basket Serie A","ایتالیا","https://www.legabasket.it","2026-09-26","2027-06-20",0],
+["LNB Betclic Élite","فرانسه","https://www.lnb.fr","2026-09-19","2027-06-15",0],
+["Basketbol Süper Ligi","ترکیه","https://www.tbf.org.tr","2026-10-03","2027-06-15",0],
+["Greek Basketball League","یونان","https://www.esake.gr","2026-10-03","2027-06-15",0],
+["ABA League","بالکان","https://www.aba-liga.com","2026-09-26","2027-04-30",0],
+["VTB United League","روسیه","https://www.vtb-league.com","2026-10-03","2027-05-31",0],
+["NBL","استرالیا","https://www.nbl.com.au","2026-10-01","2027-03-31",0],
+["CBA","چین","https://www.cba.net.cn","2026-10-20","2027-04-10",0],
+["B.League","ژاپن","https://www.bleague.jp","2026-10-03","2027-05-31",0],
+["KBL","کره جنوبی","https://www.kbl.or.kr","2026-10-10","2027-04-10",0]
+];
+let D=[],F="all";const $=s=>document.querySelector(s);
+const esc=s=>{const d=document.createElement("div");d.textContent=s??"";return d.innerHTML};
+function nav(){const ls=["all",...new Set(D.map(g=>g.league))];$("#nav").innerHTML=ls.map(l=>`<button data-f="${esc(l)}" class="${l===F?"on":""}">${l==="all"?"همه":esc(l)}</button>`).join("")+`<button data-f="_L" class="${F==="_L"?"on":""}">لیگ‌های جهان</button>`;
+document.querySelectorAll("#nav button").forEach(b=>b.onclick=()=>{F=b.dataset.f;nav();show()})}
+function show(){const lg=F==="_L";$("#games").classList.toggle("hid",lg);$("#leagues").classList.toggle("hid",!lg);if(!lg)render()}
+function render(){const q=$("#q").value.toLowerCase(),df=new Intl.DateTimeFormat("fa-IR",{weekday:"long",day:"numeric",month:"long"}),tf=new Intl.DateTimeFormat("fa-IR",{hour:"2-digit",minute:"2-digit"});let h="",last="";
+D.filter(g=>(F==="all"||g.league===F)&&(!q||(g.home.name+g.away.name+g.home.abbr+g.away.abbr).toLowerCase().includes(q))).forEach(g=>{const d=new Date(g.date),k=df.format(d);if(k!==last){h+=`<div class="day">${k}</div>`;last=k}
+const pre=g.state==="pre",mid=pre?tf.format(d):`<span class="${g.state==="in"?"live":""}">${g.state==="in"?"● زنده · ":""}${esc(g.detail)}</span>`;
+h+=`<div class="g"><div class="t">${esc(g.away.name)}<small>مهمان</small></div><div class="m">${pre?"":`<div class="s">${g.away.score} - ${g.home.score}</div>`}${mid}<div class="lg">${esc(g.league)}</div></div><div class="t">${esc(g.home.name)}<small>میزبان</small></div></div>`});
+$("#list").innerHTML=h||'<p>بازی‌ای پیدا نشد.</p>'}
+function st(l){const n=Date.now(),a=l[3]?new Date(l[3]+"T00:00:00Z").getTime():null,b=new Date(l[4]+"T23:59:59Z").getTime();
+if(a&&n<a){const d=Math.ceil((a-n)/864e5);return{k:1,t:"شروع نشده",d:"شروع: "+new Intl.DateTimeFormat("fa-IR",{day:"numeric",month:"long",year:"numeric"}).format(new Date(a))+" ("+d.toLocaleString("fa-IR")+" روز دیگر)"}}
+if(n>b)return{k:2,t:"تمام شده",d:"پایان: "+new Intl.DateTimeFormat("fa-IR",{day:"numeric",month:"long",year:"numeric"}).format(new Date(b))};
+return{k:0,t:"در جریان",d:"پایان: "+new Intl.DateTimeFormat("fa-IR",{day:"numeric",month:"long",year:"numeric"}).format(new Date(b))}}
+function leagues(){const q=$("#lq").value.trim().toLowerCase(),cl=["live","soon","done"];
+$("#ll").innerHTML=L.map(l=>({l,s:st(l)})).filter(x=>(x.l[0]+x.l[1]).toLowerCase().includes(q)).sort((a,b)=>a.s.k-b.s.k||new Date(a.l[3]||0)-new Date(b.l[3]||0)).map(({l,s})=>`<a class="l" href="${l[2]}" target="_blank" rel="noopener"><span class="bd ${cl[s.k]}">${s.t}</span><b>${esc(l[0])}</b><span>${esc(l[1])} · ${s.d}</span>${l[5]===2?"":`<span class="ap">${l[5]===1?"تاریخ پایان تقریبی":"تاریخ‌ها تقریبی"}</span>`}</a>`).join("")}
+async function load(){try{const r=await fetch("data.json?"+Date.now()),j=await r.json();D=j.games;$("#up").textContent=j.updated?"آخرین به‌روزرسانی: "+new Date(j.updated).toLocaleString("fa-IR"):"هنوز داده‌ای نیست";nav();show()}catch(e){$("#up").textContent="خطا در دریافت داده"}}
+$("#q").oninput=render;$("#lq").oninput=leagues;
+leagues();load();setInterval(load,60000);
+</script></body></html>
